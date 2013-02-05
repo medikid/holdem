@@ -39,7 +39,10 @@ class PokerTable(PlayNowApp):
             
     def join_table(self):
        click(self.image("join-table-btn"))
-       self.add_chips(200)
+       wait(1)
+#       self.add_chips(200)
+       click(self.image("add-chips-btn"))
+       click(self.image("ok-btn"))
        
     def leave_table(self):
         self.open_table_menu(self)
@@ -78,7 +81,23 @@ class PokerTable(PlayNowApp):
         PokerTable.region_community_card_4.highlight()
         PokerTable.region_community_card_5.highlight()
 
+    def region_watch_n_highlight(self, obs_reg):
+#        with selectRegion("select a region to observe") as r:
+            # any change in r larger than 50 pixels would trigger the changed function
+            obs_reg.onChange(50, self.reg_changed)
+            obs_reg.observe(background=True)
+            
+#            wait(30)# another way to observe for 30 seconds
+            obs_reg.stopObserver()
 
+    def reg_changed(self, event):
+        print("something changed in ", event.region)
+        for ch in event.changes:
+                ch.highlight() # highlight all changes
+        sleep(1)
+        for ch in event.changes:
+                ch.highlight() # turn off the highlights
+        
 
 #p = PlayNowApp()
 #p.open()

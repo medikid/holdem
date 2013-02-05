@@ -16,7 +16,7 @@ class PlayNowApp():
     
     def __init__(self):
         self.path_exe = r'C:\Program Files (x86)\Poker PlayNow.com\poker.exe'
-        self.path_image = PlayNowApp.folder_path + '\\images'
+        self.path_image = PlayNowApp.folder_path + '\\images'  + '\\chinnu-acer'
 #        guide.dialog("initialized app")
 
     def open(self):
@@ -65,7 +65,7 @@ class PlayNowApp():
         wait(2)
         click(self.image("go-to-table-btn"))
         wait(2)
-        self.maximize()
+#        self.maximize()
  #       dialog("Selected a practice table")
         
         
